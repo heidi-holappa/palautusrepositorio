@@ -11,10 +11,11 @@ class Varasto
 class Viitegeneraattori
 Varasto --> Kirjanpito
 Pankki --> Kirjanpito
-Kauppa --> Pankki
-Kauppa --> Viitegeneraatori
-Kauppa --> Varasto
 Kauppa --> Ostoskori
+Kauppa --> Viitegeneraattori
+Kauppa --> Pankki
+Kauppa --> Varasto
+Varasto --> Tuote
 ```
 
 # Muokkausten jälkeen
