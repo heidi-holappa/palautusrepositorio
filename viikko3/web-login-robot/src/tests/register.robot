@@ -37,6 +37,20 @@ Register With Nonmatching Password And Password Confirmation
     Submit Credentials
     Register Should Fail With Message  Passwords do not match!
 
+Login After Successful Registration
+    Go To Login Page
+    Set Username  peruna
+    Set Password  peruna123
+    Submit Login Credentials
+    Login Should Succeed
+
+Login After Failed Registration
+    Go To Login Page
+    Set Username  peruna
+    Set Password  perUn444
+    Submit Login Credentials
+    Login Should Fail With Message  Invalid username or password
+
 
 *** Keywords ***
 Register Should Succeed
@@ -62,7 +76,13 @@ Confirm Password
     [Arguments]  ${password}
     Input Password  password_confirmation  ${password}
 
-# Create User And Go To Login Page
-#     Create User  kalle  kalle123
-#     Go To Login Page
-#     Login Page Should Be Open
+Login Should Succeed
+    Main Page Should Be Open
+
+Submit Login Credentials
+    Click Button  Login
+
+Login Should Fail With Message
+    [Arguments]  ${message}
+    Login Page Should Be Open
+    Page Should Contain  ${message}
