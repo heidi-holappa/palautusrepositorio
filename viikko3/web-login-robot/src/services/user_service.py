@@ -1,3 +1,4 @@
+import re
 from entities.user import User
 from repositories.user_repository import (
     user_repository as default_user_repository
@@ -39,6 +40,17 @@ class UserService:
     def validate(self, username, password, password_confirmation):
         if not username or not password:
             raise UserInputError("Username and password are required")
+
+        if not password == password_confirmation:
+            raise UserInputError("Passwords do not match!")
+
+        if not re.match("^[a-z]{3,}$", username):
+            raise UserInputError(
+                "Username must have 3 characters and contain only letters a-z")
+
+        if not re.match("^(?=.*\d)(?=.*[a-zA-Z]).{8,}$", password):
+            raise UserInputError(
+                "Password must have 8 characters and can not only have letters.")
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
 
