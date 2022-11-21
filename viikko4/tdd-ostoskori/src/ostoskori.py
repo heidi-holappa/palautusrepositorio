@@ -19,7 +19,10 @@ class Ostoskori:
         return maara
 
     def hinta(self):
-        return 0
+        kokonaishinta = 0
+        for tuote in self.tuotteet.values():
+            kokonaishinta += tuote.hinta()
+        return kokonaishinta
         # kertoo korissa olevien ostosten yhteenlasketun hinnan
 
     def lisaa_tuote(self, lisattava: Tuote):
