@@ -14,7 +14,7 @@ class Ostoskori:
         # eli jos koriin lisätty 2 kpl tuotetta "maito", tulee metodin palauttaa 2
         # samoin jos korissa on 1 kpl tuotetta "maito" ja 1 kpl tuotetta "juusto", tulee metodin palauttaa 2
         maara = 0
-        for avain, tuote in self.tuotteet.items():
+        for tuote in self.tuotteet.values():
             maara += tuote.lukumaara()
         return maara
 
