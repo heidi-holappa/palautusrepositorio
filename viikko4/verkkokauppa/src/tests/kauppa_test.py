@@ -7,8 +7,12 @@ from tuote import Tuote
 
 
 class TestKauppa(unittest.TestCase):
+
+    def setUp(self):
+        self.pankki_mock = Mock()
+
     def test_ostoksen_paaytyttya_pankin_metodia_tilisiirto_kutsutaan(self):
-        pankki_mock = Mock()
+        # pankki_mock = Mock()
         viitegeneraattori_mock = Mock()
 
         # palautetaan aina arvo 42
@@ -31,7 +35,7 @@ class TestKauppa(unittest.TestCase):
         varasto_mock.hae_tuote.side_effect = varasto_hae_tuote
 
         # alustetaan kauppa
-        kauppa = Kauppa(varasto_mock, pankki_mock, viitegeneraattori_mock)
+        kauppa = Kauppa(varasto_mock, self.pankki_mock, viitegeneraattori_mock)
 
         # tehdään ostokset
         kauppa.aloita_asiointi()
@@ -39,7 +43,7 @@ class TestKauppa(unittest.TestCase):
         kauppa.tilimaksu("pekka", "12345")
 
         # varmistetaan, että metodia tilisiirto on kutsuttu
-        pankki_mock.tilisiirto.assert_called()
+        self.pankki_mock.tilisiirto.assert_called()
         # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista
 
     def test_pankin_metodia_tilisiirto_kutsutaan_oikeilla_tiedoilla(self):
