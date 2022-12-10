@@ -27,6 +27,11 @@ class QueryBuilder:
             items.append(self.stack.pop())
         return And(*items)
 
+    def oneOf(self, *args):
+        queries = args
+        self.stack.push(Or(*queries))
+        return self
+
 
 class QueryStack:
 

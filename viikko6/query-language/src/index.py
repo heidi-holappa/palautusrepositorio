@@ -68,10 +68,9 @@ def main():
         print(player)
 
     # TASK 4:
-    print(40*"-")
-    print("TASK 4:")
-    print(40*"-")
-    print("PRINTING TEST 7: QUERYSTACK ALL")
+    print("\n")
+    print(' TASK 4 '.center(80, '-'))
+    print(' TEST 7: QUERYSTACK ALL '.center(80, '-'))
 
     url = "https://studies.cs.helsinki.fi//nhlstats/2021-22/players.txt"
     reader = PlayerReader(url)
@@ -81,8 +80,8 @@ def main():
     matcher7 = query.build()
     print(len(stats.matches(matcher7)))
 
-    print(40*"-")
-    print("PRINTING TEST 8: QUERYSTACK NYR")
+    print("\n")
+    print(' TEST 8: QUERYSTACK NYR '.center(80, '-'))
 
     query2 = QueryBuilder(stats)
     matcher8 = (
@@ -94,8 +93,8 @@ def main():
     for player in stats.matches(matcher8):
         print(player)
 
-    print(40*"-")
-    print("PRINTING TEST 9: QUERYSTACK 10 < GOALS < 20")
+    print("\n")
+    print(' TEST 9: QUERYSTACK OR 10<=GOALS<20'.center(80, '-'))
 
     query3 = QueryBuilder(stats)
     matcher9 = (
@@ -107,6 +106,25 @@ def main():
     )
 
     for player in stats.matches(matcher9):
+        print(player)
+    print("\n")
+    print(' TASK 5 '.center(80, '-'))
+    print(' TEST 10: QUERYSTACK OR '.center(80, '-'))
+    matcher10 = (
+        query
+        .oneOf(
+            query.playsIn("PHI")
+            .hasAtLeast(10, "assists")
+            .hasFewerThan(5, "goals")
+            .build(),
+            query.playsIn("EDM")
+            .hasAtLeast(50, "points")
+            .build()
+        )
+        .build()
+    )
+
+    for player in stats.matches(matcher10):
         print(player)
 
 
