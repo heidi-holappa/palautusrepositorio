@@ -54,3 +54,16 @@ class All:
 
     def test(self, player):
         return player
+
+
+class Or:
+    def __init__(self, *matchers):
+        self._matchers = matchers
+
+    def test(self, player):
+        result = False
+        for matcher in self._matchers:
+            if matcher.test(player):
+                result = True
+
+        return result
