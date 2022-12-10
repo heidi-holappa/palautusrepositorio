@@ -20,13 +20,15 @@ class TennisGame:
         score = ""
         current_score = (self.points[self.player1], self.points[self.player2])
 
+        last_point = 4
         if current_score[0] == current_score[1]:
-            if current_score[0] > 3:
+
+            if current_score[0] >= last_point:
                 score = "Deuce"
             else:
                 score = self.tennis_dictionary[current_score[0]] + "-All"
 
-        elif max(current_score) >= 4:
+        elif max(current_score) >= last_point:
             difference_in_points = abs(current_score[0] - current_score[1])
 
             if difference_in_points == 1:
