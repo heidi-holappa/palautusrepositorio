@@ -19,3 +19,6 @@ class Pelitehdas:
     @staticmethod
     def luo_pelaaja_vs_parempi_tekoaly():
         return KPSParempiTekoaly()
+
+    def pelaa(self):
+        return 0
